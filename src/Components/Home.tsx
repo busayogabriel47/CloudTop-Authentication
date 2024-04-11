@@ -1,4 +1,3 @@
-import React from 'react'
 import Navbar from './Navbar'
 import banner from "../assets/banner.svg"
 import group1 from "../assets/Group1.svg"
@@ -13,6 +12,8 @@ import group9 from "../assets/Group9.svg"
 import faceOne from "../assets/face1.jpg"
 import faceTwo from "../assets/face2.jpg"
 import faceThree from "../assets/face3.jpg"
+import contactbg from "../assets/contact-bg.jpg"
+import Footer from './Footer'
 
 
 
@@ -49,16 +50,16 @@ function Home() {
                 </div>
 
                 <div className='flex flex-col md:flex-row justify-between gap-5 mt-[5rem]'>
-                    <div className='basis-[30%] pr-[10rem]'>
+                    <div className='basis-[30%] md:basis-[100%] md:place-items-start md:text-left flex flex-col items-center pr-[0rem] md:pr-[10rem] text-center'>
                         <img src={group1}/>
-                        <h3 className='my-[1.5rem] font-medium text-[1.2rem]'>Speed <br/>Optimisation</h3>
+                        <h3 className='my-[1.5rem] font-medium text-[1.2rem] w-full'>Speed <br/>Optimisation</h3>
                         <p>
                         Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.
                         </p>
 
                         <button className='mt-5'>Readmore</button>
                     </div>
-                    <div className='basis-[30%] pr-[10rem]'>
+                    <div className='basis-[30%] md:basis-[100%] md:place-items-start md:text-left flex flex-col items-center pr-[0rem] md:pr-[10rem] text-center'>
                         <img src={group2}/>
                         <h3 className='my-[1.5rem] font-medium text-[1.2rem]'>Speed <br/>Optimisation</h3>
                         <p>
@@ -67,7 +68,7 @@ function Home() {
 
                         <button className='mt-5'>Readmore</button>
                     </div>
-                    <div className='basis-[30%] pr-[10rem]'>
+                    <div className='basis-[30%] md:basis-[100%] md:place-items-start md:text-left flex flex-col items-center pr-[0rem] md:pr-[10rem] text-center'>
                         <img src={group3}/>
                         <h3 className='my-[1.5rem] font-medium text-[1.2rem]'>Speed <br/>Optimisation</h3>
                         <p>
@@ -77,6 +78,7 @@ function Home() {
                         <button className='mt-5'>Readmore</button>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -86,7 +88,7 @@ function Home() {
                
                 <div className='flex flex-col md:flex-row justify-between gap-5 mt-[5rem]'>
                 
-                    <div className='basis-[50%] pr-[10rem]'>
+                    <div className='basis-[100%] md:basis-[50%] text-center md:text-left md:pr-[10rem]'>
                         
                         <h3 className='my-[1.5rem] font-medium text-[1.2rem]'>We Offer a Full Range of Digital Marketing Services!</h3>
                         <p>
@@ -95,7 +97,7 @@ function Home() {
 
                         <button className='mt-5'>Readmore</button>
                     </div>
-                    <div className='basis-[50%] pr-[10rem]'>
+                    <div className='basis-[100%] md:basis-[50%] md:pr-[10rem]'>
                         <img src={group4}/>
                     </div>
                 </div>
@@ -103,7 +105,7 @@ function Home() {
         </div>
 
 
-        {/* We offer */}
+        {/* Leading */}
         <div className='flex justify-center'>
             <div className='flex flex-col mt-[3rem] w-[70%]'>
                
@@ -115,7 +117,7 @@ function Home() {
                              <img src={group5}/>
                         </div>
                     </div>
-                    <div className='basis-[40%] pr-[10rem]'>
+                    <div className='basis-[100%] md:basis-[40%] md:pr-[10rem] flex flex-col text-center md:text-left'>
                     <h3 className='my-[1.5rem] font-medium text-[2rem]'>
                         Leading Digital Agency for Business Solution.</h3>
                         <p>
@@ -186,7 +188,7 @@ function Home() {
 
 
                  {/*Customer review*/}
-                 <div className='flex justify-center'>
+        <div className='flex justify-center mt-8'>
             <div className='flex flex-col mt-[3rem] w-[70%]'>
                 <div className='text-center'>
                     <h2 className='text-[2rem] font-medium'>What our customers have to say</h2>
@@ -194,25 +196,52 @@ function Home() {
                 </div>
 
                 <div className='flex flex-col md:flex-row justify-between text-center gap-10 mt-[5rem]'>
-                    <div className='basis-[30%] flex flex-col justify-center'>
-                        <div className='flex justify-center w-full bg-[#F3F7FB]'>
-                            <img src={faceOne} className='rounded'/>
+                    <div className='flex justify-center w-full bg-[#F3F7FB]'>
+                        <div className='w-[70%] flex flex-col items-center py-[3rem]'>
+                            <img src={faceOne} className='rounded-full' width="20%"/>
+                            <p className='py-[1rem]'>Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
+                            <h5 className='font-bold text-[1.2rem]'>Cody Lambert</h5>
+                            <p>Marketing Manager</p>
                         </div>
                     </div>
-                    <div className='basis-[30%] flex flex-col justify-center'>
-                        <div className='flex justify-center w-full bg-[#F3F7FB]'>
-                            <img src={faceTwo} className='rounded'/>
+                    <div className='flex justify-center w-full bg-[#F3F7FB]'>
+                        <div className='w-[70%] flex flex-col items-center py-[3rem]'>
+                            <img src={faceTwo} className='rounded-full' width="20%"/>
+                                <p className='py-[1rem]'>Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.
+                                </p>
+                                <h5 className='font-bold text-[1.2rem]'>Cody Lambert</h5>
+                                <p>Marketing Manager</p>
                         </div>
                     </div>
-                    <div className='basis-[30%] flex flex-col justify-center'>
-                        <div className='flex justify-center w-full bg-[#F3F7FB]'>
-                            <img src={faceThree} className='rounded'/>
+                    <div className='flex justify-center w-full bg-[#F3F7FB]'>
+                        <div className='w-[70%] flex flex-col items-center py-[3rem]'>
+                            <img src={faceThree} className='rounded-full' width="20%"/>
+                            <p className='py-[1rem]'>Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.
+                            </p>
+                            <h5 className='font-bold text-[1.2rem]'>Cody Lambert</h5>
+                            <p>Marketing Manager</p>
                         </div>
-                    
                     </div>
                 </div>
             </div>
         </div>
+
+
+
+                  {/*Contact us*/}
+            <div className='flex justify-center mt-8' >
+                <div className='flex flex-col mt-[3rem] w-[70%]' style={{backgroundImage: `url(${contactbg})`}}>
+                    <div className='text-center my-[6rem]'>
+                        <h2 className='text-[2rem] font-medium'>Do you have any projects? <br/>Contact us</h2>
+                        <button className='border-2 border-[red] rounded-3xl text-[red] py-2 px-5 mt-5'> Contact us</button>
+                    </div>
+                </div>
+             </div>
+
+
+        {/* Footer */}
+
+        <Footer/>
         
     </>
   )
