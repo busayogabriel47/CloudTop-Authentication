@@ -131,7 +131,7 @@ const handleSubmit = async(e:FormEvent<HTMLFormElement>): Promise<void> =>{
 
                                 <div className="flex flex-row items-center gap-5 mt-10">
                                         <button type="submit" className="bg-[#6534D9] text-white text-center w-[30%] p-3 rounded-3xl">Sign up</button>
-                                        <p>Existing user? Login</p>
+                                        <p>Existing user? <Link to="/signin">Login</Link></p>
                                 </div>
 
                                 <div className="flex flex-row items-center gap-10 mt-10">
