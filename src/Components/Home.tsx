@@ -14,11 +14,24 @@ import faceTwo from "../assets/face2.jpg"
 import faceThree from "../assets/face3.jpg"
 import contactbg from "../assets/contact-bg.jpg"
 import Footer from './Footer'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 
 
-function Home() {
+const Home: React.FC = () => {
+
+    const navigate = useNavigate();
+    
+
+    useEffect(() => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        navigate('/signin'); // Redirect to login page if token does not exist
+      }
+    }, [navigate]);
+
   return (
     <>
     <div className='flex flex-col bg-[#F7F8FA] h-[70%]'>

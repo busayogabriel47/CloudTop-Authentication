@@ -5,19 +5,48 @@ import google from "../assets/google.png"
 import twitter from "../assets/twitter.png"
 import facebook from "../assets/facebook.png"
 import { Link } from "react-router-dom"
+import { useState } from "react"
+import axios from "axios"
+import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom"
 
 
-const Signin = () => {
+const Signin: React.FC = () => {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('https://cloudtopg-auth-api-service.onrender.com/auth/login', formData);
+      toast.success('Login successful');
+      const { token } = response.data;
+      localStorage.setItem('token', token); // Store the token in localStorage
+      navigate('/'); // Redirect to home after successful signin
+    } catch (error) {
+      console.error('Error signing in:', error);
+      toast.error('Invalid email or password');
+    }
+  };
+
   return (
     <>
     <div className="flex justify-center">
-        <div className="w-[80%] flex flex-col">
+        <div className="w-[80%] flex flex-col ">
             <div className='flex flex-row justify-between items-center mt-10'>
-                <h2 className='text-center text-[2rem]'>Cloudtop</h2>
-                <h2>New User? <Link to="/">Sign Up</Link></h2>
+                <Link to="/"><h2 className='text-center text-[2rem]'>CloudtopG</h2></Link>
+                <h2>New User? <Link to="/signup">Sign Up</Link></h2>
             </div>
 
-            <div className="flex flex-row">
+            <div className="flex flex-col md:flex-row">
                 <div className="mt-[100px] basis-[60%]">
                     <img src={signupimg} alt="clouptop signup" width="100%"/>
                 </div>
@@ -27,15 +56,16 @@ const Signin = () => {
                         <p>Login to continue</p>
                    </div>
                    <div>
-                            <form className="mt-20 flex flex-col gap-10">
+                            <form className="mt-20 flex flex-col gap-10" onSubmit={handleSubmit}>
 
                                 <div className="relative">
                                     <input
-                                    type="text"
-                                    name="fullname"
-                                    id="fullname"
-                                    autoComplete="username"
-                                    className="w-[80%] block flex-1 border-2 h-[65px] 
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    autoComplete="email"
+                                    onChange={handleChange}
+                                    className="w-[100%] md:w-[80%] block flex-1 border-2 h-[65px] 
                                     border-black py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 
                                     focus:ring-0 sm:text-[1.4rem] sm:leading-6 pl-10"
                                     placeholder="Email"
@@ -51,11 +81,12 @@ const Signin = () => {
 
                                 <div className="relative">
                                     <input
-                                    type="text"
-                                    name="fullname"
-                                    id="fullname"
-                                    autoComplete="username"
-                                    className="w-[80%] block flex-1 border-2 h-[65px] 
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    autoComplete="password"
+                                    onChange={handleChange}
+                                    className="w-[100%] md:w-[80%] block flex-1 border-2 h-[65px] 
                                     border-black py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 
                                     focus:ring-0 sm:text-[1.4rem] sm:leading-6 pl-10"
                                     placeholder="Password"
@@ -69,7 +100,7 @@ const Signin = () => {
                                 </div>
 
                                 <div className="flex flex-row items-center gap-5 mt-10">
-                                        <button className="bg-[#6534D9] text-white text-center w-[30%] p-3 rounded-3xl">Login </button>
+                                        <button type="submit" className="bg-[#6534D9] text-white text-center w-[30%] p-3 rounded-3xl">Login </button>
                                         <p>FORGET PASSWORD?</p>
                                 </div>
 

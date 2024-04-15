@@ -3,16 +3,53 @@ import google from "../assets/google.png"
 import twitter from "../assets/twitter.png"
 import facebook from "../assets/facebook.png"
 import { Link } from "react-router-dom"
+import { ChangeEvent, FormEvent, useState } from "react"
+import axios from "axios"
+
+import {toast} from "react-toastify"
+import {useNavigate} from 'react-router-dom'
 
 
 
-const Signup = () => {
+
+const Signup:React.FC = () => {
+
+   const navigate = useNavigate(); 
+
+const [formData, setFormData] = useState({
+    fullname: '',
+    email: '',
+    password: ''
+})
+
+
+const handleChange = (e: ChangeEvent<HTMLInputElement>):void => {
+    setFormData({...formData, [e.target.name]: e.target.value});
+};
+
+
+const handleSubmit = async(e:FormEvent<HTMLFormElement>): Promise<void> =>{
+    e.preventDefault();
+    try {
+        await axios.post('https://cloudtopg-auth-api-service.onrender.com/auth/signup', formData);
+        toast.success('User signup successfully')
+        setTimeout(()=> {
+            navigate('/signin')
+        }, 5000)
+        console.log('User signup successfully')
+    } catch (error) {
+        toast.error('Error signing up: ' + error)
+        console.error('Error signing up:', error)
+    }
+}
+
+
   return (
     <>
     <div className="flex justify-center">
         <div className="w-[80%] flex flex-col">
             <div className='flex flex-row justify-between items-center mt-10'>
-                <h2 className='text-center text-[2rem]'>Cloudtop</h2>
+                <Link to="/"><h2 className='text-center text-[2rem]'>CloudtopG</h2></Link>
                 <h2>Existing User? <Link to="/signin">Login</Link></h2>
             </div>
 
@@ -25,15 +62,17 @@ const Signup = () => {
                         <h2 className="font-bold text-[2rem]">User registration</h2>
                    </div>
                    <div>
-                            <form className="mt-20 flex flex-col gap-10">
+                            <form className="mt-20 flex flex-col gap-10" onSubmit={handleSubmit}>
                                 {/* Fullname input field*/}
                                 <div className="relative">
                                     <input
                                     type="text"
                                     name="fullname"
+                                    value={formData.fullname}
                                     id="fullname"
-                                    autoComplete="username"
-                                    className="w-[80%] block flex-1 border-2 h-[65px] 
+                                    onChange={handleChange}
+                                    autoComplete="fullname"
+                                    className="w-[100%] md:w-[80%] block flex-1 border-2 h-[65px] 
                                     border-black py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 
                                     focus:ring-0 sm:text-[1.4rem] sm:leading-6 pl-10"
                                     placeholder="Fullname"
@@ -49,11 +88,13 @@ const Signup = () => {
                                 {/*Email  input field*/}
                                 <div className="relative">
                                     <input
-                                    type="text"
-                                    name="fullname"
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
                                     id="fullname"
-                                    autoComplete="username"
-                                    className="w-[80%] block flex-1 border-2 h-[65px] 
+                                    onChange={handleChange}
+                                    autoComplete="email"
+                                    className="w-[100%] md:w-[80%] block flex-1 border-2 h-[65px] 
                                     border-black py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 
                                     focus:ring-0 sm:text-[1.4rem] sm:leading-6 pl-10"
                                     placeholder="Email"
@@ -69,11 +110,13 @@ const Signup = () => {
                                 {/*Password input field*/}
                                 <div className="relative">
                                     <input
-                                    type="text"
-                                    name="fullname"
-                                    id="fullname"
-                                    autoComplete="username"
-                                    className="w-[80%] block flex-1 border-2 h-[65px] 
+                                    type="password"
+                                    name="password"
+                                    value={formData.password}
+                                    id="password"
+                                    onChange={handleChange}
+                                    autoComplete="password"
+                                    className="w-[100%] md:w-[80%] block flex-1 border-2 h-[65px] 
                                     border-black py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 
                                     focus:ring-0 sm:text-[1.4rem] sm:leading-6 pl-10"
                                     placeholder="Password"
@@ -87,7 +130,7 @@ const Signup = () => {
                                 </div>
 
                                 <div className="flex flex-row items-center gap-5 mt-10">
-                                        <button className="bg-[#6534D9] text-white text-center w-[30%] p-3 rounded-3xl">Sign up</button>
+                                        <button type="submit" className="bg-[#6534D9] text-white text-center w-[30%] p-3 rounded-3xl">Sign up</button>
                                         <p>Existing user? Login</p>
                                 </div>
 
